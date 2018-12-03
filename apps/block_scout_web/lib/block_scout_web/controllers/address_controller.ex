@@ -7,9 +7,10 @@ defmodule BlockScoutWeb.AddressController do
 
   def index(conn, _params) do
     render(conn, "index.html",
-      addresses: Chain.list_top_addresses(),
-      address_estimated_count: Chain.address_estimated_count(),
-      exchange_rate: Market.get_exchange_rate(Explorer.coin()) || Token.null()
+      address_tx_count_pairs: Chain.list_top_addresses(),
+      address_count: Chain.count_addresses_with_balance_from_cache(),
+      exchange_rate: Market.get_exchange_rate(Explorer.coin()) || Token.null(),
+      total_supply: Chain.total_supply()
     )
   end
 
